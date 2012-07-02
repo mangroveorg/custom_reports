@@ -134,22 +134,22 @@
                     <structure>
                         <property name="position">1</property>
                         <property name="name">riz_in_transit</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">2</property>
                         <property name="name">oil_in_transit</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">3</property>
                         <property name="name">csb_in_transit</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">4</property>
                         <property name="name">sorghum_in_transit</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                 </list-property>
             </structure>
@@ -159,36 +159,36 @@
                     <property name="position">1</property>
                     <property name="name">riz_in_transit</property>
                     <property name="nativeName">riz_in_transit</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">2</property>
                     <property name="name">oil_in_transit</property>
                     <property name="nativeName">oil_in_transit</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">3</property>
                     <property name="name">csb_in_transit</property>
                     <property name="nativeName">csb_in_transit</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
                     <property name="name">sorghum_in_transit</property>
                     <property name="nativeName">sorghum_in_transit</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[select 
-SUM(CASE food_type WHEN 'RIZ' THEN weight END) AS riz_in_transit,
-SUM(CASE food_type WHEN 'HUILE' THEN weight END) AS oil_in_transit,
-SUM(CASE food_type WHEN 'CSB' THEN weight END) AS csb_in_transit,
-SUM(CASE food_type WHEN 'SORGHO' THEN weight END) AS sorghum_in_transit
+    ROUND(CAST(SUM(CASE food_type WHEN 'RIZ' THEN weight END) as numeric), 2) AS riz_in_transit,
+    ROUND(CAST(SUM(CASE food_type WHEN 'HUILE' THEN weight END) as numeric), 2) AS oil_in_transit,
+    ROUND(CAST(SUM(CASE food_type WHEN 'CSB' THEN weight END) as numeric), 2) AS csb_in_transit,
+    ROUND(CAST(SUM(CASE food_type WHEN 'SORGHO' THEN weight END) as numeric), 2) AS sorghum_in_transit
 from crs_waybillsent 
 where lower(waybill_code) not in (select lower(waybill_code) from crs_waybillreceived where received_date <= ?)
 and transaction_type in ('Transfert aux autres CS', 'Transfert aux magasins de CRS', 'Transfert aux Centres PS', 
@@ -532,22 +532,22 @@ and sent_date <= ?]]></xml-property>
                     <structure>
                         <property name="position">1</property>
                         <property name="name">riz</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">2</property>
                         <property name="name">oil</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">3</property>
                         <property name="name">csb</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">4</property>
                         <property name="name">sorghum</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                 </list-property>
             </structure>
@@ -557,39 +557,38 @@ and sent_date <= ?]]></xml-property>
                     <property name="position">1</property>
                     <property name="name">riz</property>
                     <property name="nativeName">riz</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">2</property>
                     <property name="name">oil</property>
                     <property name="nativeName">oil</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">3</property>
                     <property name="name">csb</property>
                     <property name="nativeName">csb</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
                     <property name="name">sorghum</property>
                     <property name="nativeName">sorghum</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[select
-SUM(CASE food_type WHEN 'RIZ' THEN good_net_weight + damaged_net_weight END) AS riz,
-SUM(CASE food_type WHEN 'HUILE' THEN good_net_weight + damaged_net_weight END) AS oil,
-SUM(CASE food_type WHEN 'CSB' THEN good_net_weight + damaged_net_weight END) AS csb,
-SUM(CASE food_type WHEN 'SORGHO' THEN good_net_weight + damaged_net_weight END) AS sorghum
-
+    ROUND(CAST(SUM(CASE food_type WHEN 'RIZ' THEN good_net_weight + damaged_net_weight END) as numeric), 2) AS riz,
+    ROUND(CAST(SUM(CASE food_type WHEN 'HUILE' THEN good_net_weight + damaged_net_weight END) as numeric), 2) AS oil,
+    ROUND(CAST(SUM(CASE food_type WHEN 'CSB' THEN good_net_weight + damaged_net_weight END) as numeric), 2) AS csb,
+    ROUND(CAST(SUM(CASE food_type WHEN 'SORGHO' THEN good_net_weight + damaged_net_weight END) as numeric), 2)  AS sorghum
 from crs_physicalinventorysheet where
-physical_inventory_closing_date = ?]]></xml-property>
+	physical_inventory_closing_date = ?]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -1004,82 +1003,82 @@ physical_inventory_closing_date = ?]]></xml-property>
                     <structure>
                         <property name="position">1</property>
                         <property name="name">riz_received_from_other_org</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">2</property>
                         <property name="name">oil_received_from_other_org</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">3</property>
                         <property name="name">csb_received_from_other_org</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">4</property>
                         <property name="name">sorghum_received_from_other_org</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">5</property>
                         <property name="name">riz_received_from_other_cs</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">6</property>
                         <property name="name">oil_received_from_other_cs</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">7</property>
                         <property name="name">csb_received_from_other_cs</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">8</property>
                         <property name="name">sorghum_received_from_other_cs</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">9</property>
                         <property name="name">riz_return_from_centre</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">10</property>
                         <property name="name">oil_return_from_centre</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">11</property>
                         <property name="name">csb_return_from_centre</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">12</property>
                         <property name="name">sorghum_return_from_centre</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">13</property>
                         <property name="name">riz_return_from_site</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">14</property>
                         <property name="name">oil_return_from_site</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">15</property>
                         <property name="name">csb_return_from_site</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">16</property>
                         <property name="name">sorghum_return_from_site</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">17</property>
@@ -1109,135 +1108,135 @@ physical_inventory_closing_date = ?]]></xml-property>
                     <property name="position">1</property>
                     <property name="name">riz_received_from_other_org</property>
                     <property name="nativeName">riz_received_from_other_org</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">2</property>
                     <property name="name">oil_received_from_other_org</property>
                     <property name="nativeName">oil_received_from_other_org</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">3</property>
                     <property name="name">csb_received_from_other_org</property>
                     <property name="nativeName">csb_received_from_other_org</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
                     <property name="name">sorghum_received_from_other_org</property>
                     <property name="nativeName">sorghum_received_from_other_org</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">5</property>
                     <property name="name">riz_received_from_other_cs</property>
                     <property name="nativeName">riz_received_from_other_cs</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">6</property>
                     <property name="name">oil_received_from_other_cs</property>
                     <property name="nativeName">oil_received_from_other_cs</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">7</property>
                     <property name="name">csb_received_from_other_cs</property>
                     <property name="nativeName">csb_received_from_other_cs</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">8</property>
                     <property name="name">sorghum_received_from_other_cs</property>
                     <property name="nativeName">sorghum_received_from_other_cs</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">9</property>
                     <property name="name">riz_return_from_centre</property>
                     <property name="nativeName">riz_return_from_centre</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">10</property>
                     <property name="name">oil_return_from_centre</property>
                     <property name="nativeName">oil_return_from_centre</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">11</property>
                     <property name="name">csb_return_from_centre</property>
                     <property name="nativeName">csb_return_from_centre</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">12</property>
                     <property name="name">sorghum_return_from_centre</property>
                     <property name="nativeName">sorghum_return_from_centre</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">13</property>
                     <property name="name">riz_return_from_site</property>
                     <property name="nativeName">riz_return_from_site</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">14</property>
                     <property name="name">oil_return_from_site</property>
                     <property name="nativeName">oil_return_from_site</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">15</property>
                     <property name="name">csb_return_from_site</property>
                     <property name="nativeName">csb_return_from_site</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">16</property>
                     <property name="name">sorghum_return_from_site</property>
                     <property name="nativeName">sorghum_return_from_site</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[select 
-	SUM(CASE WHEN b.food_type = 'RIZ' and  a.transaction_type = 'Reçues des autres organisations' THEN good_net_weight + damaged_net_weight END) AS riz_received_from_other_org,
-	SUM(CASE WHEN b.food_type = 'HUILE' and  a.transaction_type = 'Reçues des autres organisations' THEN good_net_weight + damaged_net_weight END) AS oil_received_from_other_org,
-	SUM(CASE WHEN b.food_type = 'CSB' and  a.transaction_type = 'Reçues des autres organisations' THEN good_net_weight + damaged_net_weight END) AS csb_received_from_other_org,
-	SUM(CASE WHEN b.food_type = 'SORGHO' and  a.transaction_type = 'Reçues des autres organisations' THEN good_net_weight + damaged_net_weight END) AS sorghum_received_from_other_org,
+	ROUND(CAST( SUM(CASE WHEN b.food_type = 'RIZ' and  a.transaction_type = 'Reçues des autres organisations' THEN good_net_weight + damaged_net_weight END) as numeric), 2) AS riz_received_from_other_org,
+	ROUND(CAST( SUM(CASE WHEN b.food_type = 'HUILE' and  a.transaction_type = 'Reçues des autres organisations' THEN good_net_weight + damaged_net_weight END) as numeric), 2) AS oil_received_from_other_org,
+	ROUND(CAST( SUM(CASE WHEN b.food_type = 'CSB' and  a.transaction_type = 'Reçues des autres organisations' THEN good_net_weight + damaged_net_weight END) as numeric), 2) AS csb_received_from_other_org,
+	ROUND(CAST( SUM(CASE WHEN b.food_type = 'SORGHO' and  a.transaction_type = 'Reçues des autres organisations' THEN good_net_weight + damaged_net_weight END) as numeric), 2) AS sorghum_received_from_other_org,
 
-	SUM(CASE WHEN b.food_type = 'RIZ' and  a.transaction_type = 'Reçues des autres CS' THEN good_net_weight + damaged_net_weight END) AS riz_received_from_other_cs,
-	SUM(CASE WHEN b.food_type = 'HUILE' and  a.transaction_type = 'Reçues des autres CS' THEN good_net_weight + damaged_net_weight END) AS oil_received_from_other_cs,
-	SUM(CASE WHEN b.food_type = 'CSB' and  a.transaction_type = 'Reçues des autres CS' THEN good_net_weight + damaged_net_weight END) AS csb_received_from_other_cs,
-	SUM(CASE WHEN b.food_type = 'SORGHO' and  a.transaction_type = 'Reçues des autres CS' THEN good_net_weight + damaged_net_weight END) AS sorghum_received_from_other_cs,
+	ROUND(CAST( SUM(CASE WHEN b.food_type = 'RIZ' and  a.transaction_type = 'Reçues des autres CS' THEN good_net_weight + damaged_net_weight END) as numeric), 2) AS riz_received_from_other_cs,
+	ROUND(CAST( SUM(CASE WHEN b.food_type = 'HUILE' and  a.transaction_type = 'Reçues des autres CS' THEN good_net_weight + damaged_net_weight END) as numeric), 2) AS oil_received_from_other_cs,
+	ROUND(CAST( SUM(CASE WHEN b.food_type = 'CSB' and  a.transaction_type = 'Reçues des autres CS' THEN good_net_weight + damaged_net_weight END) as numeric), 2) AS csb_received_from_other_cs,
+	ROUND(CAST( SUM(CASE WHEN b.food_type = 'SORGHO' and  a.transaction_type = 'Reçues des autres CS' THEN good_net_weight + damaged_net_weight END) as numeric), 2) AS sorghum_received_from_other_cs,
 
-	SUM(CASE WHEN b.food_type = 'RIZ' and  a.transaction_type = 'Retour venant du Centre' THEN good_net_weight + damaged_net_weight END) AS riz_return_from_centre,
-	SUM(CASE WHEN b.food_type = 'HUILE' and  a.transaction_type = 'Retour venant du Centre' THEN good_net_weight + damaged_net_weight END) AS oil_return_from_centre,
-	SUM(CASE WHEN b.food_type = 'CSB' and  a.transaction_type = 'Retour venant du Centre' THEN good_net_weight + damaged_net_weight END) AS csb_return_from_centre,
-	SUM(CASE WHEN b.food_type = 'SORGHO' and  a.transaction_type = 'Retour venant du Centre' THEN good_net_weight + damaged_net_weight END) AS sorghum_return_from_centre,
+	ROUND(CAST( SUM(CASE WHEN b.food_type = 'RIZ' and  a.transaction_type = 'Retour venant du Centre' THEN good_net_weight + damaged_net_weight END) as numeric), 2) AS riz_return_from_centre,
+	ROUND(CAST( SUM(CASE WHEN b.food_type = 'HUILE' and  a.transaction_type = 'Retour venant du Centre' THEN good_net_weight + damaged_net_weight END) as numeric), 2) AS oil_return_from_centre,
+	ROUND(CAST( SUM(CASE WHEN b.food_type = 'CSB' and  a.transaction_type = 'Retour venant du Centre' THEN good_net_weight + damaged_net_weight END) as numeric), 2) AS csb_return_from_centre,
+	ROUND(CAST( SUM(CASE WHEN b.food_type = 'SORGHO' and  a.transaction_type = 'Retour venant du Centre' THEN good_net_weight + damaged_net_weight END) as numeric), 2) AS sorghum_return_from_centre,
 
-	SUM(CASE WHEN b.food_type = 'RIZ' and  a.transaction_type = 'Retour venant des Sites' THEN good_net_weight + damaged_net_weight END) AS riz_return_from_site,
-	SUM(CASE WHEN b.food_type = 'HUILE' and  a.transaction_type = 'Retour venant des Sites' THEN good_net_weight + damaged_net_weight END) AS oil_return_from_site,
-	SUM(CASE WHEN b.food_type = 'CSB' and  a.transaction_type = 'Retour venant des Sites' THEN good_net_weight + damaged_net_weight END) AS csb_return_from_site,
-	SUM(CASE WHEN b.food_type = 'SORGHO' and  a.transaction_type = 'Retour venant des Sites' THEN good_net_weight + damaged_net_weight END) AS sorghum_return_from_site
+	ROUND(CAST( SUM(CASE WHEN b.food_type = 'RIZ' and  a.transaction_type = 'Retour venant des Sites' THEN good_net_weight + damaged_net_weight END) as numeric), 2) AS riz_return_from_site,
+	ROUND(CAST( SUM(CASE WHEN b.food_type = 'HUILE' and  a.transaction_type = 'Retour venant des Sites' THEN good_net_weight + damaged_net_weight END) as numeric), 2) AS oil_return_from_site,
+	ROUND(CAST( SUM(CASE WHEN b.food_type = 'CSB' and  a.transaction_type = 'Retour venant des Sites' THEN good_net_weight + damaged_net_weight END) as numeric), 2) AS csb_return_from_site,
+	ROUND(CAST( SUM(CASE WHEN b.food_type = 'SORGHO' and  a.transaction_type = 'Retour venant des Sites' THEN good_net_weight + damaged_net_weight END) as numeric), 2) AS sorghum_return_from_site
 
 from crs_waybillreceived as a
 join crs_waybillsent as b
@@ -1578,6 +1577,7 @@ and a.received_date <= ? ]]></xml-property>
                     <property name="dataType">date</property>
                     <property name="nativeDataType">91</property>
                     <property name="position">1</property>
+                    <property name="isOptional">false</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
@@ -1588,6 +1588,7 @@ and a.received_date <= ? ]]></xml-property>
                     <property name="dataType">date</property>
                     <property name="nativeDataType">91</property>
                     <property name="position">2</property>
+                    <property name="isOptional">false</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
@@ -1598,6 +1599,7 @@ and a.received_date <= ? ]]></xml-property>
                     <property name="dataType">date</property>
                     <property name="nativeDataType">91</property>
                     <property name="position">3</property>
+                    <property name="isOptional">false</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
@@ -1608,6 +1610,7 @@ and a.received_date <= ? ]]></xml-property>
                     <property name="dataType">date</property>
                     <property name="nativeDataType">91</property>
                     <property name="position">4</property>
+                    <property name="isOptional">false</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
@@ -1618,6 +1621,7 @@ and a.received_date <= ? ]]></xml-property>
                     <property name="dataType">date</property>
                     <property name="nativeDataType">91</property>
                     <property name="position">5</property>
+                    <property name="isOptional">false</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
@@ -1628,6 +1632,7 @@ and a.received_date <= ? ]]></xml-property>
                     <property name="dataType">date</property>
                     <property name="nativeDataType">91</property>
                     <property name="position">6</property>
+                    <property name="isOptional">false</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
@@ -1638,6 +1643,7 @@ and a.received_date <= ? ]]></xml-property>
                     <property name="dataType">date</property>
                     <property name="nativeDataType">91</property>
                     <property name="position">7</property>
+                    <property name="isOptional">false</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
@@ -1648,6 +1654,7 @@ and a.received_date <= ? ]]></xml-property>
                     <property name="dataType">date</property>
                     <property name="nativeDataType">91</property>
                     <property name="position">8</property>
+                    <property name="isOptional">false</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
@@ -1657,42 +1664,42 @@ and a.received_date <= ? ]]></xml-property>
                     <structure>
                         <property name="position">1</property>
                         <property name="name">rice_excess_landed</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">2</property>
                         <property name="name">oil_excess_landed</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">3</property>
                         <property name="name">csb_excess_landed</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">4</property>
                         <property name="name">sorghum_excess_landed</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">5</property>
                         <property name="name">rice_received_from_port</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">6</property>
                         <property name="name">oil_received_from_port</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">7</property>
                         <property name="name">csb_received_from_port</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">8</property>
                         <property name="name">sorghum_received_from_port</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                 </list-property>
             </structure>
@@ -1702,69 +1709,69 @@ and a.received_date <= ? ]]></xml-property>
                     <property name="position">1</property>
                     <property name="name">rice_excess_landed</property>
                     <property name="nativeName">rice_excess_landed</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">2</property>
                     <property name="name">oil_excess_landed</property>
                     <property name="nativeName">oil_excess_landed</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">3</property>
                     <property name="name">csb_excess_landed</property>
                     <property name="nativeName">csb_excess_landed</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
                     <property name="name">sorghum_excess_landed</property>
                     <property name="nativeName">sorghum_excess_landed</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">5</property>
                     <property name="name">rice_received_from_port</property>
                     <property name="nativeName">rice_received_from_port</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">6</property>
                     <property name="name">oil_received_from_port</property>
                     <property name="nativeName">oil_received_from_port</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">7</property>
                     <property name="name">csb_received_from_port</property>
                     <property name="nativeName">csb_received_from_port</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">8</property>
                     <property name="name">sorghum_received_from_port</property>
                     <property name="nativeName">sorghum_received_from_port</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[(
 select 
-    ( coalesce(cont_riz_sent,0) + coalesce(riz_sent_bb,0)) - ( coalesce(riz,0) + coalesce(riz1,0) ) as rice_excess_landed,
-    ( coalesce(cont_oil_sent,0) + coalesce(oil_sent_bb,0)- coalesce(oil,0) - coalesce(oil1,0)) as oil_excess_landed,
-    ( coalesce(cont_csb_sent,0) + coalesce(csb_sent_bb,0)-coalesce(csb,0) - coalesce(csb1,0)) as csb_excess_landed,
-    ( coalesce(cont_sorghum_sent,0) + coalesce(sorghum_sent_bb,0)- coalesce(sorghum,0)- coalesce(sorghum1,0) ) as sorghum_excess_landed,
-    coalesce(riz,0) + coalesce(riz1,0) as rice_received_from_port,
-    coalesce(oil,0) + coalesce(oil1,0) as oil_received_from_port,
-    coalesce(csb,0) + coalesce(csb1,0) as csb_received_from_port,
-    coalesce(sorghum,0) + coalesce(sorghum1,0) as sorghum_received_from_port
+    ROUND(CAST( ( coalesce(cont_riz_sent,0) + coalesce(riz_sent_bb,0)) - ( coalesce(riz,0) + coalesce(riz1,0) ) as numeric), 2) as rice_excess_landed,
+    ROUND(CAST( ( coalesce(cont_oil_sent,0) + coalesce(oil_sent_bb,0)- coalesce(oil,0) - coalesce(oil1,0)) as numeric), 2) as oil_excess_landed,
+    ROUND(CAST( ( coalesce(cont_csb_sent,0) + coalesce(csb_sent_bb,0)-coalesce(csb,0) - coalesce(csb1,0)) as numeric), 2) as csb_excess_landed,
+    ROUND(CAST( ( coalesce(cont_sorghum_sent, 0) + coalesce(sorghum_sent_bb, 0)- coalesce(sorghum, 0)- coalesce(sorghum1, 0) ) as numeric), 2) as sorghum_excess_landed,
+    ROUND(CAST((coalesce(riz,0) + coalesce(riz1,0)) as numeric), 2) as rice_received_from_port,
+    ROUND(CAST((coalesce(oil,0) + coalesce(oil1,0)) as numeric), 2) as oil_received_from_port,
+    ROUND(CAST((coalesce(csb,0) + coalesce(csb1,0)) as numeric), 2) as csb_received_from_port,
+    ROUND(CAST((coalesce(sorghum,0) + coalesce(sorghum1,0)) as numeric), 2) as sorghum_received_from_port
 from 
 (
     select 
@@ -2338,222 +2345,222 @@ from
                     <structure>
                         <property name="position">1</property>
                         <property name="name">riz_to_other_cs</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">2</property>
                         <property name="name">oil_to_other_cs</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">3</property>
                         <property name="name">csb_to_other_cs</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">4</property>
                         <property name="name">sorgho_to_other_cs</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">5</property>
                         <property name="name">riz_to_org</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">6</property>
                         <property name="name">oil_to_org</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">7</property>
                         <property name="name">csb_to_org</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">8</property>
                         <property name="name">sorgho_to_org</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">9</property>
                         <property name="name">riz_to_center_ps</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">10</property>
                         <property name="name">oil_to_center_ps</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">11</property>
                         <property name="name">csb_to_center_ps</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">12</property>
                         <property name="name">sorgho_to_center_ps</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">13</property>
                         <property name="name">riz_to_ips_partners</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">14</property>
                         <property name="name">oil_to_ips_partners</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">15</property>
                         <property name="name">csb_to_ips_partners</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">16</property>
                         <property name="name">sorgho_to_ips_partners</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">17</property>
                         <property name="name">riz_to_dest</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">18</property>
                         <property name="name">oil_to_dest</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">19</property>
                         <property name="name">csb_to_dest</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">20</property>
                         <property name="name">sorgho_to_dest</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">21</property>
                         <property name="name">riz_to_sfm</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">22</property>
                         <property name="name">oil_to_sfm</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">23</property>
                         <property name="name">csb_to_sfm</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">24</property>
                         <property name="name">sorgho_to_sfm</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">25</property>
                         <property name="name">riz_to_sfe</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">26</property>
                         <property name="name">oil_to_sfe</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">27</property>
                         <property name="name">csb_to_sfe</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">28</property>
                         <property name="name">sorgho_to_sfe</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">29</property>
                         <property name="name">riz_to_ffa</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">30</property>
                         <property name="name">oil_to_ffa</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">31</property>
                         <property name="name">csb_to_ffa</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">32</property>
                         <property name="name">sorgho_to_ffa</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">33</property>
                         <property name="name">riz_to_labtest</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">34</property>
                         <property name="name">oil_to_labtest</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">35</property>
                         <property name="name">csb_to_labtest</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">36</property>
                         <property name="name">sorgho_to_labtest</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">37</property>
                         <property name="name">riz_to_sales</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">38</property>
                         <property name="name">oil_to_sales</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">39</property>
                         <property name="name">csb_to_sales</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">40</property>
                         <property name="name">sorgho_to_sales</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">41</property>
                         <property name="name">riz_to_others</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">42</property>
                         <property name="name">oil_to_others</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">43</property>
                         <property name="name">csb_to_others</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">44</property>
                         <property name="name">sorgho_to_others</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">45</property>
@@ -2623,367 +2630,367 @@ from
                     <property name="position">1</property>
                     <property name="name">riz_to_other_cs</property>
                     <property name="nativeName">riz_to_other_cs</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">2</property>
                     <property name="name">oil_to_other_cs</property>
                     <property name="nativeName">oil_to_other_cs</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">3</property>
                     <property name="name">csb_to_other_cs</property>
                     <property name="nativeName">csb_to_other_cs</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
                     <property name="name">sorgho_to_other_cs</property>
                     <property name="nativeName">sorgho_to_other_cs</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">5</property>
                     <property name="name">riz_to_org</property>
                     <property name="nativeName">riz_to_org</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">6</property>
                     <property name="name">oil_to_org</property>
                     <property name="nativeName">oil_to_org</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">7</property>
                     <property name="name">csb_to_org</property>
                     <property name="nativeName">csb_to_org</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">8</property>
                     <property name="name">sorgho_to_org</property>
                     <property name="nativeName">sorgho_to_org</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">9</property>
                     <property name="name">riz_to_center_ps</property>
                     <property name="nativeName">riz_to_center_ps</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">10</property>
                     <property name="name">oil_to_center_ps</property>
                     <property name="nativeName">oil_to_center_ps</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">11</property>
                     <property name="name">csb_to_center_ps</property>
                     <property name="nativeName">csb_to_center_ps</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">12</property>
                     <property name="name">sorgho_to_center_ps</property>
                     <property name="nativeName">sorgho_to_center_ps</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">13</property>
                     <property name="name">riz_to_ips_partners</property>
                     <property name="nativeName">riz_to_ips_partners</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">14</property>
                     <property name="name">oil_to_ips_partners</property>
                     <property name="nativeName">oil_to_ips_partners</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">15</property>
                     <property name="name">csb_to_ips_partners</property>
                     <property name="nativeName">csb_to_ips_partners</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">16</property>
                     <property name="name">sorgho_to_ips_partners</property>
                     <property name="nativeName">sorgho_to_ips_partners</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">17</property>
                     <property name="name">riz_to_dest</property>
                     <property name="nativeName">riz_to_dest</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">18</property>
                     <property name="name">oil_to_dest</property>
                     <property name="nativeName">oil_to_dest</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">19</property>
                     <property name="name">csb_to_dest</property>
                     <property name="nativeName">csb_to_dest</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">20</property>
                     <property name="name">sorgho_to_dest</property>
                     <property name="nativeName">sorgho_to_dest</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">21</property>
                     <property name="name">riz_to_sfm</property>
                     <property name="nativeName">riz_to_sfm</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">22</property>
                     <property name="name">oil_to_sfm</property>
                     <property name="nativeName">oil_to_sfm</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">23</property>
                     <property name="name">csb_to_sfm</property>
                     <property name="nativeName">csb_to_sfm</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">24</property>
                     <property name="name">sorgho_to_sfm</property>
                     <property name="nativeName">sorgho_to_sfm</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">25</property>
                     <property name="name">riz_to_sfe</property>
                     <property name="nativeName">riz_to_sfe</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">26</property>
                     <property name="name">oil_to_sfe</property>
                     <property name="nativeName">oil_to_sfe</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">27</property>
                     <property name="name">csb_to_sfe</property>
                     <property name="nativeName">csb_to_sfe</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">28</property>
                     <property name="name">sorgho_to_sfe</property>
                     <property name="nativeName">sorgho_to_sfe</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">29</property>
                     <property name="name">riz_to_ffa</property>
                     <property name="nativeName">riz_to_ffa</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">30</property>
                     <property name="name">oil_to_ffa</property>
                     <property name="nativeName">oil_to_ffa</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">31</property>
                     <property name="name">csb_to_ffa</property>
                     <property name="nativeName">csb_to_ffa</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">32</property>
                     <property name="name">sorgho_to_ffa</property>
                     <property name="nativeName">sorgho_to_ffa</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">33</property>
                     <property name="name">riz_to_labtest</property>
                     <property name="nativeName">riz_to_labtest</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">34</property>
                     <property name="name">oil_to_labtest</property>
                     <property name="nativeName">oil_to_labtest</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">35</property>
                     <property name="name">csb_to_labtest</property>
                     <property name="nativeName">csb_to_labtest</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">36</property>
                     <property name="name">sorgho_to_labtest</property>
                     <property name="nativeName">sorgho_to_labtest</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">37</property>
                     <property name="name">riz_to_sales</property>
                     <property name="nativeName">riz_to_sales</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">38</property>
                     <property name="name">oil_to_sales</property>
                     <property name="nativeName">oil_to_sales</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">39</property>
                     <property name="name">csb_to_sales</property>
                     <property name="nativeName">csb_to_sales</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">40</property>
                     <property name="name">sorgho_to_sales</property>
                     <property name="nativeName">sorgho_to_sales</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">41</property>
                     <property name="name">riz_to_others</property>
                     <property name="nativeName">riz_to_others</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">42</property>
                     <property name="name">oil_to_others</property>
                     <property name="nativeName">oil_to_others</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">43</property>
                     <property name="name">csb_to_others</property>
                     <property name="nativeName">csb_to_others</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">44</property>
                     <property name="name">sorgho_to_others</property>
                     <property name="nativeName">sorgho_to_others</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[SELECT 
 	
-	SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type='Transfert aux autres CS' THEN weight	 ELSE 0 END) AS riz_to_other_cs,
-	SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type='Transfert aux autres CS' THEN weight ELSE 0 END) AS oil_to_other_cs,
-	SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type='Transfert aux autres CS' THEN weight	 ELSE 0 END) AS csb_to_other_cs,
-	SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type='Transfert aux autres CS' THEN  weight	 ELSE 0 END) AS sorgho_to_other_cs,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type='Transfert aux autres CS' THEN weight	 ELSE 0 END) as numeric), 2) AS riz_to_other_cs,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type='Transfert aux autres CS' THEN weight ELSE 0 END) as numeric), 2) AS oil_to_other_cs,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type='Transfert aux autres CS' THEN weight	 ELSE 0 END) as numeric), 2) AS csb_to_other_cs,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type='Transfert aux autres CS' THEN  weight	 ELSE 0 END) as numeric), 2) AS sorgho_to_other_cs,
 		
-	SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type='Transfert aux autres organisations' THEN weight	 ELSE 0 END) AS riz_to_org,
-	SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type='Transfert aux autres organisations' THEN weight	 ELSE 0 END) AS oil_to_org,
-	SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type='Transfert aux autres organisations' THEN weight	 ELSE 0 END) AS csb_to_org,
-	SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type='Transfert aux autres organisations' THEN  weight	 ELSE 0 END) AS sorgho_to_org,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type='Transfert aux autres organisations' THEN weight	 ELSE 0 END) as numeric), 2) AS riz_to_org,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type='Transfert aux autres organisations' THEN weight	 ELSE 0 END) as numeric), 2) AS oil_to_org,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type='Transfert aux autres organisations' THEN weight	 ELSE 0 END) as numeric), 2) AS csb_to_org,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type='Transfert aux autres organisations' THEN  weight	 ELSE 0 END) as numeric), 2) AS sorgho_to_org,
 	
-	SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type='Transfert aux Centres PS' THEN weight	 ELSE 0 END) AS riz_to_center_ps,
-	SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type='Transfert aux Centres PS' THEN weight	 ELSE 0 END) AS oil_to_center_ps,
-	SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type='Transfert aux Centres PS' THEN weight	 ELSE 0 END) AS csb_to_center_ps,
-	SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type='Transfert aux Centres PS' THEN  weight	 ELSE 0 END) AS sorgho_to_center_ps,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type='Transfert aux Centres PS' THEN weight	 ELSE 0 END) as numeric), 2) AS riz_to_center_ps,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type='Transfert aux Centres PS' THEN weight	 ELSE 0 END) as numeric), 2) AS oil_to_center_ps,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type='Transfert aux Centres PS' THEN weight	 ELSE 0 END) as numeric), 2) AS csb_to_center_ps,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type='Transfert aux Centres PS' THEN  weight	 ELSE 0 END) as numeric), 2) AS sorgho_to_center_ps,
 	
-	SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type='Transfert aux Partenaires IPs' THEN weight	 ELSE 0 END) AS riz_to_ips_partners,
-	SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type='Transfert aux Partenaires IPs' THEN weight	 ELSE 0 END) AS oil_to_ips_partners,
-	SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type='Transfert aux Partenaires IPs' THEN weight	 ELSE 0 END) AS csb_to_ips_partners,
-	SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type='Transfert aux Partenaires IPs' THEN  weight	 ELSE 0 END) AS sorgho_to_ips_partners,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type='Transfert aux Partenaires IPs' THEN weight	 ELSE 0 END) as numeric), 2) AS riz_to_ips_partners,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type='Transfert aux Partenaires IPs' THEN weight	 ELSE 0 END) as numeric), 2) AS oil_to_ips_partners,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type='Transfert aux Partenaires IPs' THEN weight	 ELSE 0 END) as numeric), 2) AS csb_to_ips_partners,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type='Transfert aux Partenaires IPs' THEN  weight	 ELSE 0 END) as numeric), 2) AS sorgho_to_ips_partners,
 	
-	SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type='Destruction' THEN weight	 ELSE 0 END) AS riz_to_dest,
-	SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type='Destruction' THEN weight	 ELSE 0 END) AS oil_to_dest,
-	SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type='Destruction' THEN weight	 ELSE 0 END) AS csb_to_dest,
-	SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type='Destruction' THEN  weight	 ELSE 0 END) AS sorgho_to_dest,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type='Destruction' THEN weight	 ELSE 0 END) as numeric), 2) AS riz_to_dest,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type='Destruction' THEN weight	 ELSE 0 END) as numeric), 2) AS oil_to_dest,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type='Destruction' THEN weight	 ELSE 0 END) as numeric), 2) AS csb_to_dest,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type='Destruction' THEN  weight	 ELSE 0 END) as numeric), 2) AS sorgho_to_dest,
 	
-	SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type='Livraisons pour SFM' THEN weight	 ELSE 0 END) AS riz_to_sfm,
-	SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type='Livraisons pour SFM' THEN weight	 ELSE 0 END) AS oil_to_sfm,
-	SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type='Livraisons pour SFM' THEN weight	 ELSE 0 END) AS csb_to_sfm,
-	SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type='Livraisons pour SFM' THEN  weight	 ELSE 0 END) AS sorgho_to_sfm,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type='Livraisons pour SFM' THEN weight	 ELSE 0 END) as numeric), 2) AS riz_to_sfm,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type='Livraisons pour SFM' THEN weight	 ELSE 0 END) as numeric), 2) AS oil_to_sfm,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type='Livraisons pour SFM' THEN weight	 ELSE 0 END) as numeric), 2) AS csb_to_sfm,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type='Livraisons pour SFM' THEN  weight	 ELSE 0 END) as numeric), 2) AS sorgho_to_sfm,
 	
-	SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type='Livraisons pour SFE' THEN weight	 ELSE 0 END) AS riz_to_sfe,
-	SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type='Livraisons pour SFE' THEN weight	 ELSE 0 END) AS oil_to_sfe,
-	SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type='Livraisons pour SFE' THEN weight	 ELSE 0 END) AS csb_to_sfe,
-	SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type='Livraisons pour SFE' THEN  weight	 ELSE 0 END) AS sorgho_to_sfe,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type='Livraisons pour SFE' THEN weight	 ELSE 0 END) as numeric), 2) AS riz_to_sfe,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type='Livraisons pour SFE' THEN weight	 ELSE 0 END) as numeric), 2) AS oil_to_sfe,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type='Livraisons pour SFE' THEN weight	 ELSE 0 END) as numeric), 2) AS csb_to_sfe,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type='Livraisons pour SFE' THEN  weight	 ELSE 0 END) as numeric), 2) AS sorgho_to_sfe,
 	
-	SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type='Livraisons pour FFA' THEN weight	 ELSE 0 END) AS riz_to_ffa,
-	SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type='Livraisons pour FFA' THEN weight	 ELSE 0 END) AS oil_to_ffa,
-	SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type='Livraisons pour FFA' THEN weight	 ELSE 0 END) AS csb_to_ffa,
-	SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type='Livraisons pour FFA' THEN  weight	 ELSE 0 END) AS sorgho_to_ffa,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type='Livraisons pour FFA' THEN weight	 ELSE 0 END) as numeric), 2) AS riz_to_ffa,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type='Livraisons pour FFA' THEN weight	 ELSE 0 END) as numeric), 2) AS oil_to_ffa,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type='Livraisons pour FFA' THEN weight	 ELSE 0 END) as numeric), 2) AS csb_to_ffa,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type='Livraisons pour FFA' THEN  weight	 ELSE 0 END) as numeric), 2) AS sorgho_to_ffa,
 	
-	SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type='Labtest' THEN weight	 ELSE 0 END) AS riz_to_labtest,
-	SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type='Labtest' THEN weight	 ELSE 0 END) AS oil_to_labtest,
-	SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type='Labtest' THEN weight	 ELSE 0 END) AS csb_to_labtest,
-	SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type='Labtest' THEN  weight	 ELSE 0 END) AS sorgho_to_labtest,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type='Labtest' THEN weight	 ELSE 0 END) as numeric), 2) AS riz_to_labtest,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type='Labtest' THEN weight	 ELSE 0 END) as numeric), 2) AS oil_to_labtest,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type='Labtest' THEN weight	 ELSE 0 END) as numeric), 2) AS csb_to_labtest,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type='Labtest' THEN  weight	 ELSE 0 END) as numeric), 2) AS sorgho_to_labtest,
 	
-	SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type='Vente' THEN weight	 ELSE 0 END) AS riz_to_sales,
-	SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type='Vente' THEN weight	 ELSE 0 END) AS oil_to_sales,
-	SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type='Vente' THEN weight	 ELSE 0 END) AS csb_to_sales,
-	SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type='Vente' THEN  weight	 ELSE 0 END) AS sorgho_to_sales,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type='Vente' THEN weight	 ELSE 0 END) as numeric), 2) AS riz_to_sales,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type='Vente' THEN weight	 ELSE 0 END) as numeric), 2) AS oil_to_sales,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type='Vente' THEN weight	 ELSE 0 END) as numeric), 2) AS csb_to_sales,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type='Vente' THEN  weight	 ELSE 0 END) as numeric), 2) AS sorgho_to_sales,
 	
-	SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type='Autres' THEN weight	 ELSE 0 END) AS riz_to_others,
-	SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type='Autres' THEN weight	 ELSE 0 END) AS oil_to_others,
-	SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type='Autres' THEN weight	 ELSE 0 END) AS csb_to_others,
-	SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type='Autres' THEN  weight	 ELSE 0 END) AS sorgho_to_others
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type='Autres' THEN weight	 ELSE 0 END) as numeric), 2) AS riz_to_others,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type='Autres' THEN weight	 ELSE 0 END) as numeric), 2) AS oil_to_others,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type='Autres' THEN weight	 ELSE 0 END) as numeric), 2) AS csb_to_others,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type='Autres' THEN  weight	 ELSE 0 END) as numeric), 2) AS sorgho_to_others
 	
 	FROM crs_waybillsent
 	
@@ -3328,22 +3335,22 @@ WHERE sent_date BETWEEN ? AND ?]]></xml-property>
                     <structure>
                         <property name="position">1</property>
                         <property name="name">riz</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">2</property>
                         <property name="name">oil</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">3</property>
                         <property name="name">csb</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">4</property>
                         <property name="name">sorghum</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                 </list-property>
             </structure>
@@ -3353,39 +3360,39 @@ WHERE sent_date BETWEEN ? AND ?]]></xml-property>
                     <property name="position">1</property>
                     <property name="name">riz</property>
                     <property name="nativeName">riz</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">2</property>
                     <property name="name">oil</property>
                     <property name="nativeName">oil</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">3</property>
                     <property name="name">csb</property>
                     <property name="nativeName">csb</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
                     <property name="name">sorghum</property>
                     <property name="nativeName">sorghum</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[select
-SUM(CASE food_type WHEN 'RIZ' THEN good_net_weight + damaged_net_weight END) AS riz,
-SUM(CASE food_type WHEN 'HUILE' THEN good_net_weight + damaged_net_weight END) AS oil,
-SUM(CASE food_type WHEN 'CSB' THEN good_net_weight + damaged_net_weight END) AS csb,
-SUM(CASE food_type WHEN 'SORGHO' THEN good_net_weight + damaged_net_weight END) AS sorghum
-
+    ROUND(CAST(SUM(CASE food_type WHEN 'RIZ' THEN good_net_weight + damaged_net_weight END) as numeric), 2) AS riz,
+    ROUND(CAST(SUM(CASE food_type WHEN 'HUILE' THEN good_net_weight + damaged_net_weight END) as numeric), 2) AS oil,
+    ROUND(CAST(SUM(CASE food_type WHEN 'CSB' THEN good_net_weight + damaged_net_weight END) as numeric), 2) AS csb,
+    ROUND(CAST(SUM(CASE food_type WHEN 'SORGHO' THEN good_net_weight + damaged_net_weight END) as numeric), 2)  AS sorghum
 from crs_physicalinventorysheet where
-physical_inventory_closing_date = ?]]></xml-property>
+physical_inventory_closing_date = ?
+]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -3692,102 +3699,102 @@ physical_inventory_closing_date = ?]]></xml-property>
                     <structure>
                         <property name="position">1</property>
                         <property name="name">riz_to_wh_in_transit</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">2</property>
                         <property name="name">oil_to_wh_in_transit</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">3</property>
                         <property name="name">csb_to_wh_in_transit</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">4</property>
                         <property name="name">sorgho_to_wh_in_transit</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">5</property>
                         <property name="name">riz_to_other_cs_in_transit</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">6</property>
                         <property name="name">oil_to_other_cs_in_transit</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">7</property>
                         <property name="name">csb_to_other_cs_in_transit</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">8</property>
                         <property name="name">sorgho_to_other_cs_in_transit</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">9</property>
                         <property name="name">riz_to_ips_partners_in_transit</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">10</property>
                         <property name="name">oil_to_ips_partners_in_transit</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">11</property>
                         <property name="name">csb_to_ips_partners_in_transit</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">12</property>
                         <property name="name">sorgho_to_ips_partners_in_transit</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">13</property>
                         <property name="name">riz_to_center_ps_in_transit</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">14</property>
                         <property name="name">oil_to_center_ps_in_transit</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">15</property>
                         <property name="name">csb_to_center_ps_in_transit</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">16</property>
                         <property name="name">sorgho_to_center_ps_in_transit</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">17</property>
                         <property name="name">riz_to_site_in_transit</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">18</property>
                         <property name="name">oil_to_site_in_transit</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">19</property>
                         <property name="name">csb_to_site_in_transit</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">20</property>
                         <property name="name">sorgho_to_site_in_transit</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">21</property>
@@ -3817,168 +3824,168 @@ physical_inventory_closing_date = ?]]></xml-property>
                     <property name="position">1</property>
                     <property name="name">riz_to_wh_in_transit</property>
                     <property name="nativeName">riz_to_wh_in_transit</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">2</property>
                     <property name="name">oil_to_wh_in_transit</property>
                     <property name="nativeName">oil_to_wh_in_transit</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">3</property>
                     <property name="name">csb_to_wh_in_transit</property>
                     <property name="nativeName">csb_to_wh_in_transit</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
                     <property name="name">sorgho_to_wh_in_transit</property>
                     <property name="nativeName">sorgho_to_wh_in_transit</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">5</property>
                     <property name="name">riz_to_other_cs_in_transit</property>
                     <property name="nativeName">riz_to_other_cs_in_transit</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">6</property>
                     <property name="name">oil_to_other_cs_in_transit</property>
                     <property name="nativeName">oil_to_other_cs_in_transit</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">7</property>
                     <property name="name">csb_to_other_cs_in_transit</property>
                     <property name="nativeName">csb_to_other_cs_in_transit</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">8</property>
                     <property name="name">sorgho_to_other_cs_in_transit</property>
                     <property name="nativeName">sorgho_to_other_cs_in_transit</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">9</property>
                     <property name="name">riz_to_ips_partners_in_transit</property>
                     <property name="nativeName">riz_to_ips_partners_in_transit</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">10</property>
                     <property name="name">oil_to_ips_partners_in_transit</property>
                     <property name="nativeName">oil_to_ips_partners_in_transit</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">11</property>
                     <property name="name">csb_to_ips_partners_in_transit</property>
                     <property name="nativeName">csb_to_ips_partners_in_transit</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">12</property>
                     <property name="name">sorgho_to_ips_partners_in_transit</property>
                     <property name="nativeName">sorgho_to_ips_partners_in_transit</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">13</property>
                     <property name="name">riz_to_center_ps_in_transit</property>
                     <property name="nativeName">riz_to_center_ps_in_transit</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">14</property>
                     <property name="name">oil_to_center_ps_in_transit</property>
                     <property name="nativeName">oil_to_center_ps_in_transit</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">15</property>
                     <property name="name">csb_to_center_ps_in_transit</property>
                     <property name="nativeName">csb_to_center_ps_in_transit</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">16</property>
                     <property name="name">sorgho_to_center_ps_in_transit</property>
                     <property name="nativeName">sorgho_to_center_ps_in_transit</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">17</property>
                     <property name="name">riz_to_site_in_transit</property>
                     <property name="nativeName">riz_to_site_in_transit</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">18</property>
                     <property name="name">oil_to_site_in_transit</property>
                     <property name="nativeName">oil_to_site_in_transit</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">19</property>
                     <property name="name">csb_to_site_in_transit</property>
                     <property name="nativeName">csb_to_site_in_transit</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">20</property>
                     <property name="name">sorgho_to_site_in_transit</property>
                     <property name="nativeName">sorgho_to_site_in_transit</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[select 
-	SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type='Transfert aux magasins de CRS' THEN weight	 ELSE 0 END) AS riz_to_wh_in_transit,
-	SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type='Transfert aux magasins de CRS' THEN weight	 ELSE 0 END) AS oil_to_wh_in_transit,
-	SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type='Transfert aux magasins de CRS' THEN weight	 ELSE 0 END) AS csb_to_wh_in_transit,
-	SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type='Transfert aux magasins de CRS' THEN  weight	 ELSE 0 END) AS sorgho_to_wh_in_transit,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type='Transfert aux magasins de CRS' THEN weight	 ELSE 0 END) as numeric), 2) AS riz_to_wh_in_transit,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type='Transfert aux magasins de CRS' THEN weight	 ELSE 0 END) as numeric), 2) AS oil_to_wh_in_transit,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type='Transfert aux magasins de CRS' THEN weight	 ELSE 0 END) as numeric), 2) AS csb_to_wh_in_transit,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type='Transfert aux magasins de CRS' THEN  weight	 ELSE 0 END) as numeric), 2) AS sorgho_to_wh_in_transit,
 	
-	SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type='Transfert aux autres CS' THEN weight	 ELSE 0 END) AS riz_to_other_cs_in_transit,
-	SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type='Transfert aux autres CS' THEN weight	 ELSE 0 END) AS oil_to_other_cs_in_transit,
-	SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type='Transfert aux autres CS' THEN weight	 ELSE 0 END) AS csb_to_other_cs_in_transit,
-	SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type='Transfert aux autres CS' THEN  weight	 ELSE 0 END) AS sorgho_to_other_cs_in_transit,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type='Transfert aux autres CS' THEN weight	 ELSE 0 END) as numeric), 2) AS riz_to_other_cs_in_transit,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type='Transfert aux autres CS' THEN weight	 ELSE 0 END) as numeric), 2) AS oil_to_other_cs_in_transit,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type='Transfert aux autres CS' THEN weight	 ELSE 0 END) as numeric), 2) AS csb_to_other_cs_in_transit,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type='Transfert aux autres CS' THEN  weight	 ELSE 0 END) as numeric), 2) AS sorgho_to_other_cs_in_transit,
 	
-	SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type='Transfert aux Partenaires IPs' THEN weight	 ELSE 0 END) AS riz_to_ips_partners_in_transit,
-	SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type='Transfert aux Partenaires IPs' THEN weight	 ELSE 0 END) AS oil_to_ips_partners_in_transit,
-	SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type='Transfert aux Partenaires IPs' THEN weight	 ELSE 0 END) AS csb_to_ips_partners_in_transit,
-	SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type='Transfert aux Partenaires IPs' THEN  weight	 ELSE 0 END) AS sorgho_to_ips_partners_in_transit,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type='Transfert aux Partenaires IPs' THEN weight	 ELSE 0 END) as numeric), 2) AS riz_to_ips_partners_in_transit,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type='Transfert aux Partenaires IPs' THEN weight	 ELSE 0 END) as numeric), 2) AS oil_to_ips_partners_in_transit,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type='Transfert aux Partenaires IPs' THEN weight	 ELSE 0 END) as numeric), 2) AS csb_to_ips_partners_in_transit,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type='Transfert aux Partenaires IPs' THEN  weight	 ELSE 0 END) as numeric), 2) AS sorgho_to_ips_partners_in_transit,
 	
-	SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type='Transfert aux Centres PS' THEN weight	 ELSE 0 END) AS riz_to_center_ps_in_transit,
-	SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type='Transfert aux Centres PS' THEN weight	 ELSE 0 END) AS oil_to_center_ps_in_transit,
-	SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type='Transfert aux Centres PS' THEN weight	 ELSE 0 END) AS csb_to_center_ps_in_transit,
-	SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type='Transfert aux Centres PS' THEN  weight	 ELSE 0 END) AS sorgho_to_center_ps_in_transit,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type='Transfert aux Centres PS' THEN weight	 ELSE 0 END) as numeric), 2) AS riz_to_center_ps_in_transit,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type='Transfert aux Centres PS' THEN weight	 ELSE 0 END) as numeric), 2) AS oil_to_center_ps_in_transit,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type='Transfert aux Centres PS' THEN weight	 ELSE 0 END) as numeric), 2) AS csb_to_center_ps_in_transit,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type='Transfert aux Centres PS' THEN  weight	 ELSE 0 END) as numeric), 2) AS sorgho_to_center_ps_in_transit,
 	
-	SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type in ('Livraisons pour SFM', 'Livraisons pour SFE', 'Livraisons pour FFA') THEN weight	 ELSE 0 END) AS riz_to_site_in_transit,
-	SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type in ('Livraisons pour SFM', 'Livraisons pour SFE', 'Livraisons pour FFA') THEN weight	 ELSE 0 END) AS oil_to_site_in_transit,
-	SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type in ('Livraisons pour SFM', 'Livraisons pour SFE', 'Livraisons pour FFA') THEN weight	 ELSE 0 END) AS csb_to_site_in_transit,
-	SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type in ('Livraisons pour SFM', 'Livraisons pour SFE', 'Livraisons pour FFA') THEN  weight	 ELSE 0 END) AS sorgho_to_site_in_transit	
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='RIZ' AND transaction_type in ('Livraisons pour SFM', 'Livraisons pour SFE', 'Livraisons pour FFA') THEN weight	 ELSE 0 END) as numeric), 2) AS riz_to_site_in_transit,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='HUILE' AND transaction_type in ('Livraisons pour SFM', 'Livraisons pour SFE', 'Livraisons pour FFA') THEN weight	 ELSE 0 END) as numeric), 2) AS oil_to_site_in_transit,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='CSB' AND transaction_type in ('Livraisons pour SFM', 'Livraisons pour SFE', 'Livraisons pour FFA') THEN weight	 ELSE 0 END) as numeric), 2) AS csb_to_site_in_transit,
+	ROUND(CAST( SUM(CASE WHEN upper(food_type)='SORGHO' AND transaction_type in ('Livraisons pour SFM', 'Livraisons pour SFE', 'Livraisons pour FFA') THEN  weight	 ELSE 0 END) as numeric), 2) AS sorgho_to_site_in_transit	
 from crs_waybillsent
 where lower(waybill_code) not in (select lower(waybill_code) from crs_waybillreceived where received_date BETWEEN ? AND ?)
 and sent_date BETWEEN ? AND ?]]></xml-property>
@@ -5549,28 +5556,28 @@ GROUP BY new_field) -1]]></xml-property>
                             <cell id="909">
                                 <property name="style">with_medium_border</property>
                                 <label id="2011">
-                                    <method name="onCreate"><![CDATA[this.text = vars["riz_begin_stock"];]]></method>
+                                    <method name="onCreate"><![CDATA[this.text = BirtMath.round(vars["riz_begin_stock"], 2);]]></method>
                                 </label>
                             </cell>
                             <cell id="1030"/>
                             <cell id="910">
                                 <property name="style">with_medium_border</property>
                                 <label id="2012">
-                                    <method name="onCreate"><![CDATA[this.text = vars["oil_begin_stock"];]]></method>
+                                    <method name="onCreate"><![CDATA[this.text = BirtMath.round(vars["oil_begin_stock"], 2);]]></method>
                                 </label>
                             </cell>
                             <cell id="1051"/>
                             <cell id="911">
                                 <property name="style">with_medium_border</property>
                                 <label id="2013">
-                                    <method name="onCreate"><![CDATA[this.text = vars["csb_begin_stock"];]]></method>
+                                    <method name="onCreate"><![CDATA[this.text = BirtMath.round(vars["csb_begin_stock"], 2);]]></method>
                                 </label>
                             </cell>
                             <cell id="1093"/>
                             <cell id="912">
                                 <property name="style">with_medium_border</property>
                                 <label id="2014">
-                                    <method name="onCreate"><![CDATA[this.text = vars["sorgho_begin_stock"];]]></method>
+                                    <method name="onCreate"><![CDATA[this.text = BirtMath.round(vars["sorgho_begin_stock"], 2);]]></method>
                                 </label>
                             </cell>
                         </row>
@@ -5934,28 +5941,28 @@ GROUP BY new_field) -1]]></xml-property>
                             <cell id="945">
                                 <property name="style">with_medium_border</property>
                                 <label id="2031">
-                                    <method name="onCreate"><![CDATA[this.text = vars["riz_total_2"];]]></method>
+                                    <method name="onCreate"><![CDATA[this.text = BirtMath.round(vars["riz_total_2"], 2);]]></method>
                                 </label>
                             </cell>
                             <cell id="1036"/>
                             <cell id="946">
                                 <property name="style">with_medium_border</property>
                                 <label id="2032">
-                                    <method name="onCreate"><![CDATA[this.text = vars["oil_total_2"];]]></method>
+                                    <method name="onCreate"><![CDATA[this.text = BirtMath.round(vars["oil_total_2"], 2);]]></method>
                                 </label>
                             </cell>
                             <cell id="1057"/>
                             <cell id="947">
                                 <property name="style">with_medium_border</property>
                                 <label id="2033">
-                                    <method name="onCreate"><![CDATA[this.text = vars["csb_total_2"];]]></method>
+                                    <method name="onCreate"><![CDATA[this.text = BirtMath.round(vars["csb_total_2"], 2);]]></method>
                                 </label>
                             </cell>
                             <cell id="1099"/>
                             <cell id="948">
                                 <property name="style">with_medium_border</property>
                                 <label id="2034">
-                                    <method name="onCreate"><![CDATA[this.text = vars["sorgho_total_2"];]]></method>
+                                    <method name="onCreate"><![CDATA[this.text = BirtMath.round(vars["sorgho_total_2"], 2);]]></method>
                                 </label>
                             </cell>
                         </row>
@@ -6238,66 +6245,30 @@ GROUP BY new_field) -1]]></xml-property>
                             <cell id="1080"/>
                             <cell id="957">
                                 <property name="style">with_border</property>
-                                <data id="2047">
-                                    <list-property name="boundDataColumns">
-                                        <structure>
-                                            <property name="name">riz_available</property>
-                                            <text-property name="displayName">riz_available</text-property>
-                                            <expression name="expression" type="javascript">vars["riz_available"]</expression>
-                                            <property name="dataType">string</property>
-                                        </structure>
-                                    </list-property>
-                                    <method name="onCreate"><![CDATA[vars["riz_theo_stock"] += vars["riz_available"];]]></method>
-                                    <property name="resultSetColumn">riz_available</property>
-                                </data>
+                                <label id="2175">
+                                    <method name="onCreate"><![CDATA[this.text = BirtMath.round(vars["riz_available"], 2); vars["riz_theo_stock"] += vars["riz_available"];]]></method>
+                                </label>
                             </cell>
                             <cell id="1038"/>
                             <cell id="958">
                                 <property name="style">with_border</property>
-                                <data id="2048">
-                                    <list-property name="boundDataColumns">
-                                        <structure>
-                                            <property name="name">oil_available</property>
-                                            <text-property name="displayName">oil_available</text-property>
-                                            <expression name="expression" type="javascript">vars["oil_available"]</expression>
-                                            <property name="dataType">string</property>
-                                        </structure>
-                                    </list-property>
-                                    <method name="onCreate"><![CDATA[vars["oil_theo_stock"] += vars["oil_available"];]]></method>
-                                    <property name="resultSetColumn">oil_available</property>
-                                </data>
+                                <label id="2176">
+                                    <method name="onCreate"><![CDATA[this.text = BirtMath.round(vars["oil_available"], 2); vars["oil_theo_stock"] += vars["oil_available"];]]></method>
+                                </label>
                             </cell>
                             <cell id="1059"/>
                             <cell id="959">
                                 <property name="style">with_border</property>
-                                <data id="2049">
-                                    <list-property name="boundDataColumns">
-                                        <structure>
-                                            <property name="name">csb_available</property>
-                                            <text-property name="displayName">csb_available</text-property>
-                                            <expression name="expression" type="javascript">vars["csb_available"]</expression>
-                                            <property name="dataType">string</property>
-                                        </structure>
-                                    </list-property>
-                                    <method name="onCreate"><![CDATA[vars["csb_theo_stock"] += vars["csb_available"];]]></method>
-                                    <property name="resultSetColumn">csb_available</property>
-                                </data>
+                                <label id="2177">
+                                    <method name="onCreate"><![CDATA[this.text = BirtMath.round(vars["csb_available"], 2);vars["csb_theo_stock"] += vars["csb_available"];]]></method>
+                                </label>
                             </cell>
                             <cell id="1101"/>
                             <cell id="960">
                                 <property name="style">with_border</property>
-                                <data id="2050">
-                                    <list-property name="boundDataColumns">
-                                        <structure>
-                                            <property name="name">sorgho_available</property>
-                                            <text-property name="displayName">sorgho_available</text-property>
-                                            <expression name="expression" type="javascript">vars["sorgho_available"]</expression>
-                                            <property name="dataType">string</property>
-                                        </structure>
-                                    </list-property>
-                                    <method name="onCreate"><![CDATA[vars["sorgho_theo_stock"] += vars["sorgho_available"];]]></method>
-                                    <property name="resultSetColumn">sorgho_available</property>
-                                </data>
+                                <label id="2178">
+                                    <method name="onCreate"><![CDATA[this.text = BirtMath.round(vars["sorgho_available"], 2); vars["sorgho_theo_stock"] += vars["sorgho_available"];]]></method>
+                                </label>
                             </cell>
                         </row>
                         <row id="961">
@@ -7423,66 +7394,30 @@ GROUP BY new_field) -1]]></xml-property>
                             <cell id="2111"/>
                             <cell id="2112">
                                 <property name="style">with_medium_border</property>
-                                <data id="2131">
-                                    <list-property name="boundDataColumns">
-                                        <structure>
-                                            <property name="name">riz_theo_stock</property>
-                                            <text-property name="displayName">riz_theo_stock</text-property>
-                                            <expression name="expression" type="javascript">vars["riz_theo_stock"]</expression>
-                                            <property name="dataType">string</property>
-                                        </structure>
-                                    </list-property>
-                                    <method name="onCreate"><![CDATA[vars["riz_dif"] += vars["riz_theo_stock"];]]></method>
-                                    <property name="resultSetColumn">riz_theo_stock</property>
-                                </data>
+                                <label id="2179">
+                                    <method name="onCreate"><![CDATA[this.text = BirtMath.round(vars["riz_theo_stock"], 2); vars["riz_dif"] += vars["riz_theo_stock"];]]></method>
+                                </label>
                             </cell>
                             <cell id="2113"/>
                             <cell id="2114">
                                 <property name="style">with_medium_border</property>
-                                <data id="2132">
-                                    <list-property name="boundDataColumns">
-                                        <structure>
-                                            <property name="name">oil_theo_stock</property>
-                                            <text-property name="displayName">oil_theo_stock</text-property>
-                                            <expression name="expression" type="javascript">vars["oil_theo_stock"]</expression>
-                                            <property name="dataType">string</property>
-                                        </structure>
-                                    </list-property>
-                                    <method name="onCreate"><![CDATA[vars["oil_dif"] += vars["oil_theo_stock"];]]></method>
-                                    <property name="resultSetColumn">oil_theo_stock</property>
-                                </data>
+                                <label id="2180">
+                                    <method name="onCreate"><![CDATA[this.text = BirtMath.round(vars["oil_theo_stock"], 2); vars["oil_dif"] += vars["oil_theo_stock"];]]></method>
+                                </label>
                             </cell>
                             <cell id="2115"/>
                             <cell id="2116">
                                 <property name="style">with_medium_border</property>
-                                <data id="2133">
-                                    <list-property name="boundDataColumns">
-                                        <structure>
-                                            <property name="name">csb_theo_stock</property>
-                                            <text-property name="displayName">csb_theo_stock</text-property>
-                                            <expression name="expression" type="javascript">vars["csb_theo_stock"]</expression>
-                                            <property name="dataType">string</property>
-                                        </structure>
-                                    </list-property>
-                                    <method name="onCreate"><![CDATA[vars["csb_dif"] += vars["csb_theo_stock"];]]></method>
-                                    <property name="resultSetColumn">csb_theo_stock</property>
-                                </data>
+                                <label id="2181">
+                                    <method name="onCreate"><![CDATA[this.text = BirtMath.round(vars["csb_theo_stock"], 2); vars["csb_dif"] += vars["csb_theo_stock"];]]></method>
+                                </label>
                             </cell>
                             <cell id="2117"/>
                             <cell id="2118">
                                 <property name="style">with_medium_border</property>
-                                <data id="2134">
-                                    <list-property name="boundDataColumns">
-                                        <structure>
-                                            <property name="name">sorgho_theo_stock</property>
-                                            <text-property name="displayName">sorgho_theo_stock</text-property>
-                                            <expression name="expression" type="javascript">vars["sorgho_theo_stock"]</expression>
-                                            <property name="dataType">string</property>
-                                        </structure>
-                                    </list-property>
-                                    <method name="onCreate"><![CDATA[vars["sorgho_dif"] += vars["sorgho_theo_stock"];]]></method>
-                                    <property name="resultSetColumn">sorgho_theo_stock</property>
-                                </data>
+                                <label id="2182">
+                                    <method name="onCreate"><![CDATA[this.text = BirtMath.round(vars["sorgho_theo_stock"], 2); vars["sorgho_dif"] += vars["sorgho_theo_stock"];]]></method>
+                                </label>
                             </cell>
                         </row>
                         <row id="1688">
@@ -7598,66 +7533,30 @@ GROUP BY new_field) -1]]></xml-property>
                             <cell id="1086"/>
                             <cell id="993">
                                 <property name="style">with_medium_border</property>
-                                <data id="2139">
-                                    <list-property name="boundDataColumns">
-                                        <structure>
-                                            <property name="name">riz_dif</property>
-                                            <text-property name="displayName">riz_dif</text-property>
-                                            <expression name="expression" type="javascript">vars["riz_dif"]</expression>
-                                            <property name="dataType">string</property>
-                                        </structure>
-                                    </list-property>
-                                    <method name="onCreate"><![CDATA[vars["riz_unaccounted"] += vars["riz_dif"];]]></method>
-                                    <property name="resultSetColumn">riz_dif</property>
-                                </data>
+                                <label id="2183">
+                                    <method name="onCreate"><![CDATA[this.text = BirtMath.round(vars["riz_dif"], 2);vars["riz_unaccounted"] += vars["riz_dif"];]]></method>
+                                </label>
                             </cell>
                             <cell id="1044"/>
                             <cell id="994">
                                 <property name="style">with_medium_border</property>
-                                <data id="2140">
-                                    <list-property name="boundDataColumns">
-                                        <structure>
-                                            <property name="name">oil_dif</property>
-                                            <text-property name="displayName">oil_dif</text-property>
-                                            <expression name="expression" type="javascript">vars["oil_dif"]</expression>
-                                            <property name="dataType">string</property>
-                                        </structure>
-                                    </list-property>
-                                    <method name="onCreate"><![CDATA[vars["oil_unaccounted"] += vars["oil_dif"];]]></method>
-                                    <property name="resultSetColumn">oil_dif</property>
-                                </data>
+                                <label id="2184">
+                                    <method name="onCreate"><![CDATA[this.text = BirtMath.round(vars["oil_dif"], 2);vars["oil_unaccounted"] += vars["oil_dif"];]]></method>
+                                </label>
                             </cell>
                             <cell id="1065"/>
                             <cell id="995">
                                 <property name="style">with_medium_border</property>
-                                <data id="2141">
-                                    <list-property name="boundDataColumns">
-                                        <structure>
-                                            <property name="name">csb_dif</property>
-                                            <text-property name="displayName">csb_dif</text-property>
-                                            <expression name="expression" type="javascript">vars["csb_dif"]</expression>
-                                            <property name="dataType">string</property>
-                                        </structure>
-                                    </list-property>
-                                    <method name="onCreate"><![CDATA[vars["csb_unaccounted"] += vars["csb_dif"];]]></method>
-                                    <property name="resultSetColumn">csb_dif</property>
-                                </data>
+                                <label id="2185">
+                                    <method name="onCreate"><![CDATA[this.text = BirtMath.round(vars["csb_dif"], 2);vars["csb_unaccounted"] += vars["csb_dif"];]]></method>
+                                </label>
                             </cell>
                             <cell id="1107"/>
                             <cell id="996">
                                 <property name="style">with_medium_border</property>
-                                <data id="2142">
-                                    <list-property name="boundDataColumns">
-                                        <structure>
-                                            <property name="name">sorgho_dif</property>
-                                            <text-property name="displayName">sorgho_dif</text-property>
-                                            <expression name="expression" type="javascript">vars["sorgho_dif"]</expression>
-                                            <property name="dataType">string</property>
-                                        </structure>
-                                    </list-property>
-                                    <method name="onCreate"><![CDATA[vars["sorgho_unaccounted"] += vars["sorgho_dif"];]]></method>
-                                    <property name="resultSetColumn">sorgho_dif</property>
-                                </data>
+                                <label id="2186">
+                                    <method name="onCreate"><![CDATA[this.text = BirtMath.round(vars["sorgho_dif"], 2); vars["sorgho_unaccounted"] += vars["sorgho_dif"];]]></method>
+                                </label>
                             </cell>
                         </row>
                         <row id="1894">
@@ -8258,62 +8157,30 @@ GROUP BY new_field) -1]]></xml-property>
                             <cell id="1980"/>
                             <cell id="1981">
                                 <property name="style">with_medium_border</property>
-                                <data id="2171">
-                                    <list-property name="boundDataColumns">
-                                        <structure>
-                                            <property name="name">riz_unaccounted</property>
-                                            <text-property name="displayName">riz_unaccounted</text-property>
-                                            <expression name="expression" type="javascript">vars["riz_unaccounted"]</expression>
-                                            <property name="dataType">string</property>
-                                        </structure>
-                                    </list-property>
-                                    <property name="resultSetColumn">riz_unaccounted</property>
-                                </data>
+                                <label id="2187">
+                                    <method name="onCreate"><![CDATA[this.text = BirtMath.round(vars["riz_unaccounted"], 2);]]></method>
+                                </label>
                             </cell>
                             <cell id="1982"/>
                             <cell id="1983">
                                 <property name="style">with_medium_border</property>
-                                <data id="2172">
-                                    <list-property name="boundDataColumns">
-                                        <structure>
-                                            <property name="name">oil_unaccounted</property>
-                                            <text-property name="displayName">oil_unaccounted</text-property>
-                                            <expression name="expression" type="javascript">vars["oil_unaccounted"]</expression>
-                                            <property name="dataType">string</property>
-                                        </structure>
-                                    </list-property>
-                                    <property name="resultSetColumn">oil_unaccounted</property>
-                                </data>
+                                <label id="2188">
+                                    <method name="onCreate"><![CDATA[this.text = BirtMath.round(vars["oil_unaccounted"], 2);]]></method>
+                                </label>
                             </cell>
                             <cell id="1984"/>
                             <cell id="1985">
                                 <property name="style">with_medium_border</property>
-                                <data id="2173">
-                                    <list-property name="boundDataColumns">
-                                        <structure>
-                                            <property name="name">csb_unaccounted</property>
-                                            <text-property name="displayName">csb_unaccounted</text-property>
-                                            <expression name="expression" type="javascript">vars["csb_unaccounted"]</expression>
-                                            <property name="dataType">string</property>
-                                        </structure>
-                                    </list-property>
-                                    <property name="resultSetColumn">csb_unaccounted</property>
-                                </data>
+                                <label id="2189">
+                                    <method name="onCreate"><![CDATA[this.text = BirtMath.round(vars["csb_unaccounted"], 2);]]></method>
+                                </label>
                             </cell>
                             <cell id="1986"/>
                             <cell id="1987">
                                 <property name="style">with_medium_border</property>
-                                <data id="2174">
-                                    <list-property name="boundDataColumns">
-                                        <structure>
-                                            <property name="name">sorgho_unaccounted</property>
-                                            <text-property name="displayName">sorgho_unaccounted</text-property>
-                                            <expression name="expression" type="javascript">vars["sorgho_unaccounted"]</expression>
-                                            <property name="dataType">string</property>
-                                        </structure>
-                                    </list-property>
-                                    <property name="resultSetColumn">sorgho_unaccounted</property>
-                                </data>
+                                <label id="2190">
+                                    <method name="onCreate"><![CDATA[this.text = BirtMath.round(vars["sorgho_unaccounted"], 2);]]></method>
+                                </label>
                             </cell>
                         </row>
                     </grid>
