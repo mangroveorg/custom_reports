@@ -5,44 +5,6 @@
         <value>properties/messages</value>
         <value>properties/messages_fr_CA</value>
     </simple-property-list>
-    <list-property name="propertyBindings">
-        <structure>
-            <property name="name">queryText</property>
-            <property name="id">17</property>
-        </structure>
-        <structure>
-            <property name="name">queryTimeOut</property>
-            <property name="id">17</property>
-        </structure>
-        <structure>
-            <property name="name">rowFetchSize</property>
-            <property name="id">17</property>
-        </structure>
-        <structure>
-            <property name="name">queryText</property>
-            <property name="id">15</property>
-        </structure>
-        <structure>
-            <property name="name">queryTimeOut</property>
-            <property name="id">15</property>
-        </structure>
-        <structure>
-            <property name="name">rowFetchSize</property>
-            <property name="id">15</property>
-        </structure>
-        <structure>
-            <property name="name">queryText</property>
-            <property name="id">14</property>
-        </structure>
-        <structure>
-            <property name="name">queryTimeOut</property>
-            <property name="id">14</property>
-        </structure>
-        <structure>
-            <property name="name">rowFetchSize</property>
-            <property name="id">14</property>
-        </structure>
-    </list-property>
     <property name="units">in</property>
     <property name="iconFile">/templates/blank_report.gif</property>
     <property name="bidiLayoutOrientation">ltr</property>
@@ -167,22 +129,22 @@
                     <structure>
                         <property name="position">1</property>
                         <property name="name">rice_received</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">2</property>
                         <property name="name">oil_received</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">3</property>
                         <property name="name">csb_received</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">4</property>
                         <property name="name">sorghum_received</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                 </list-property>
             </structure>
@@ -192,37 +154,37 @@
                     <property name="position">1</property>
                     <property name="name">rice_received</property>
                     <property name="nativeName">rice_received</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">2</property>
                     <property name="name">oil_received</property>
                     <property name="nativeName">oil_received</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">3</property>
                     <property name="name">csb_received</property>
                     <property name="nativeName">csb_received</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
                     <property name="name">sorghum_received</property>
                     <property name="nativeName">sorghum_received</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[(
 select 
-	riz+riz1 as rice_received,
-	oil+oil1 as oil_received,
-	csb+csb1 as csb_received,
-	sorghum+sorghum1 as sorghum_received
+	round(cast((riz+riz1) as numeric), 2) as rice_received,
+	round(cast((oil+oil1) as numeric), 2) as oil_received,
+	round(cast((csb+csb1) as numeric), 2) as csb_received,
+	round(cast((sorghum+sorghum1) as numeric), 2) as sorghum_received
 from 
 	(
 	 select 
@@ -616,12 +578,12 @@ from
                     <structure>
                         <property name="position">3</property>
                         <property name="name">prev_quant_under_bl</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">4</property>
                         <property name="name">weight</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">5</property>
@@ -660,15 +622,15 @@ from
                     <property name="position">3</property>
                     <property name="name">prev_quant_under_bl</property>
                     <property name="nativeName">prev_quant_under_bl</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
                     <property name="name">weight</property>
                     <property name="nativeName">weight</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">5</property>
@@ -678,7 +640,10 @@ from
                     <property name="nativeDataType">8</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[select rice_cost, bill_of_lading_code, net_weight as prev_quant_under_bl, weight, freight
+            <xml-property name="queryText"><![CDATA[select rice_cost, bill_of_lading_code, 
+    round(cast(net_weight as numeric), 2) as prev_quant_under_bl, 
+    round(cast(weight as numeric), 2) as weight, 
+    freight
 from crs_packinglist as p
 join crs_billoflading as b
 on lower(p.pl_code) = lower(b.pl_code)
@@ -960,12 +925,12 @@ and upper(b.food_type) = 'RIZ']]></xml-property>
                     <structure>
                         <property name="position">3</property>
                         <property name="name">prev_quant_under_bl</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">4</property>
                         <property name="name">weight</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">5</property>
@@ -1004,15 +969,15 @@ and upper(b.food_type) = 'RIZ']]></xml-property>
                     <property name="position">3</property>
                     <property name="name">prev_quant_under_bl</property>
                     <property name="nativeName">prev_quant_under_bl</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
                     <property name="name">weight</property>
                     <property name="nativeName">weight</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">5</property>
@@ -1022,7 +987,7 @@ and upper(b.food_type) = 'RIZ']]></xml-property>
                     <property name="nativeDataType">8</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[select csb_cost, bill_of_lading_code, coalesce(net_weight, 0) as prev_quant_under_bl, weight, freight
+            <xml-property name="queryText"><![CDATA[select csb_cost, bill_of_lading_code, round(cast( coalesce(net_weight, 0) as numeric), 2) as prev_quant_under_bl, round(cast(weight as numeric), 2) as weight, freight
 from crs_packinglist as p
 join crs_billoflading as b
 on lower(p.pl_code) = lower(b.pl_code)
@@ -1260,12 +1225,12 @@ and upper(b.food_type) = 'CSB']]></xml-property>
                     <structure>
                         <property name="position">3</property>
                         <property name="name">prev_quant_under_bl</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">4</property>
                         <property name="name">weight</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">5</property>
@@ -1304,15 +1269,15 @@ and upper(b.food_type) = 'CSB']]></xml-property>
                     <property name="position">3</property>
                     <property name="name">prev_quant_under_bl</property>
                     <property name="nativeName">prev_quant_under_bl</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
                     <property name="name">weight</property>
                     <property name="nativeName">weight</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">5</property>
@@ -1322,7 +1287,10 @@ and upper(b.food_type) = 'CSB']]></xml-property>
                     <property name="nativeDataType">8</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[select oil_cost, bill_of_lading_code, net_weight as prev_quant_under_bl, weight, freight
+            <xml-property name="queryText"><![CDATA[select oil_cost, bill_of_lading_code, 
+    round(cast(net_weight as numeric), 2) as prev_quant_under_bl, 
+    round(cast( weight as numeric), 2) as weight, 
+    freight
 from crs_packinglist as p
 join crs_billoflading as b
 on lower(p.pl_code) = lower(b.pl_code)
@@ -1560,12 +1528,12 @@ and upper(b.food_type) = 'HUILE']]></xml-property>
                     <structure>
                         <property name="position">3</property>
                         <property name="name">prev_quant_under_bl</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">4</property>
                         <property name="name">weight</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">5</property>
@@ -1604,15 +1572,15 @@ and upper(b.food_type) = 'HUILE']]></xml-property>
                     <property name="position">3</property>
                     <property name="name">prev_quant_under_bl</property>
                     <property name="nativeName">prev_quant_under_bl</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
                     <property name="name">weight</property>
                     <property name="nativeName">weight</property>
-                    <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">5</property>
@@ -1622,7 +1590,10 @@ and upper(b.food_type) = 'HUILE']]></xml-property>
                     <property name="nativeDataType">8</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[select sorghum_cost, bill_of_lading_code, net_weight as prev_quant_under_bl, weight, freight
+            <xml-property name="queryText"><![CDATA[select sorghum_cost, bill_of_lading_code, 
+    round(cast(net_weight as numeric), 2) as prev_quant_under_bl, 
+    round(cast(weight as numeric), 2) as weight, 
+    freight
 from crs_packinglist as p
 join crs_billoflading as b
 on lower(p.pl_code) = lower(b.pl_code)
@@ -2649,28 +2620,28 @@ from crs_billoflading]]></xml-property>
                             <cell id="1799">
                                 <property name="style">with_border</property>
                                 <label id="1844">
-                                    <method name="onCreate"><![CDATA[this.text = vars["riz_dif"];]]></method>
+                                    <method name="onCreate"><![CDATA[this.text = BirtMath.round(vars["riz_dif"], 2);]]></method>
                                 </label>
                             </cell>
                             <cell id="1800"/>
                             <cell id="1801">
                                 <property name="style">with_border</property>
                                 <label id="1845">
-                                    <method name="onCreate"><![CDATA[this.text = vars["oil_dif"];]]></method>
+                                    <method name="onCreate"><![CDATA[this.text = BirtMath.round(vars["oil_dif"], 2);]]></method>
                                 </label>
                             </cell>
                             <cell id="1802"/>
                             <cell id="1803">
                                 <property name="style">with_border</property>
                                 <label id="1846">
-                                    <method name="onCreate"><![CDATA[this.text = vars["csb_dif"];]]></method>
+                                    <method name="onCreate"><![CDATA[this.text = BirtMath.round(vars["csb_dif"], 2);]]></method>
                                 </label>
                             </cell>
                             <cell id="1804"/>
                             <cell id="1805">
                                 <property name="style">with_border</property>
                                 <label id="1847">
-                                    <method name="onCreate"><![CDATA[this.text = vars["sorgho_dif"];]]></method>
+                                    <method name="onCreate"><![CDATA[this.text = BirtMath.round(vars["sorgho_dif"], 2);]]></method>
                                 </label>
                             </cell>
                         </row>
